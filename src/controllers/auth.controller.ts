@@ -31,6 +31,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`; // to send to user
 
     await transporter.sendMail({
+        from: process.env.EMAIL_USER,
         to: user.email,
         subject: "Password Reset",
         html: `<p>Click <a href="${resetLink}">here</a> to reset your password</p>`
